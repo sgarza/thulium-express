@@ -1,21 +1,20 @@
-Thulium engine for Express 4
-
-## Requirements
-
-[Thulium](https://www.npmjs.com/package/thulium);
-
+[Thulium](http://freshout-dev.github.io/thulium) engine for Express 4
 
 ## Install
 
     npm install -save thulium-express
+
+
+## Dependencies
+
+[Neon](http://azendal.github.io/neon/) a DSL Class system for Javascript.
+[Thulium](http://freshout-dev.github.io/thulium)
 
 ## Usage
 
 Setup Express to use thulium views and thulium engine
 
 ```javascript
-require('thulium');
-
 var express = require('express');
 var app = express();
 

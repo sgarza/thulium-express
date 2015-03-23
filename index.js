@@ -1,3 +1,6 @@
+require('neon');
+require('thulium');
+
 module.exports = function(path, options, callback) {
 	var fileCache = {};
 

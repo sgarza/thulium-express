@@ -1,8 +1,8 @@
 {
   "name": "thulium-express",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Thulium Engine for Express",
-  "repository" : "https://github.com/sgarza/thulium-express",
+  "repository": "https://github.com/sgarza/thulium-express",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,5 +18,9 @@
     "express"
   ],
   "author": "Sergio de la Garza <sergio@delagarza.io> (http://delagarza.io)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "neon": "^2.0.0",
+    "thulium": "^2.0.0"
+  }
 }
