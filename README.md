@@ -5,6 +5,10 @@ Thulium engine for Express 4
 [Thulium](https://www.npmjs.com/package/thulium);
 
 
+## Install
+
+    npm install -save thulium-express
+
 ## Usage
 
 Setup Express to use thulium views and thulium engine
@@ -17,7 +21,7 @@ var app = express();
 
 ...
 
-app.engine('html', require('thulium-engine'));
+app.engine('html', require('thulium-express'));
 app.set('view engine', 'html');
 
 // views go in __dirname/views
