@@ -1,6 +1,6 @@
 {
   "name": "thulium-express",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Thulium Engine for Express",
   "repository": "https://github.com/sgarza/thulium-express",
   "main": "index.js",
