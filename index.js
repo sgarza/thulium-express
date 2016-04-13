@@ -2,9 +2,9 @@ require('neon');
 require('thulium');
 var fs = require('fs');
 
-module.exports = function(path, options, callback) {
-  var fileCache = {};
+var fileCache = {};
 
+module.exports = function(path, options, callback) {
   var key = path + ':thulium:string';
 
   if ('function' == typeof options) {
