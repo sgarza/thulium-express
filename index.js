@@ -29,7 +29,7 @@ module.exports = function(path, options, callback) {
 
   var tm;
 
-  options.renderPartial = function renderPartial(partialPath, locals) {
+  options.partial = options.renderPartial = function renderPartial(partialPath, locals) {
     try {
 
       var partialFile = fs.readFileSync('./' + options.settings.views + '/' + partialPath, 'utf8');
@@ -39,7 +39,7 @@ module.exports = function(path, options, callback) {
       });
 
       locals = locals || {};
-      locals.renderPartial = renderPartial;
+      locals.partial = locals.renderPartial = renderPartial;
 
       partialTemplate.parseSync().renderSync(locals);
 
