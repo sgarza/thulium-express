@@ -5,7 +5,7 @@ var fs = require('fs');
 var fileCache = {};
 
 function fixExtension(filename) {
-  if (filename.indexOf('.html') === -1) {
+  if (/(?:\.([^.]+))?$/.test(filename) === false) {
     filename += '.html';
   }
 
