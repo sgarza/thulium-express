@@ -3,9 +3,10 @@ require('thulium');
 var fs = require('fs');
 
 var fileCache = {};
+var regexp = new RegExp(/\.([0-9a-z]+)(?:[\?#]|$)/);
 
 function fixExtension(filename) {
-  if (/(?:\.([^.]+))?$/.test(filename) === false) {
+  if (regexp.test(filename) === false) {
     filename += '.html';
   }
 
