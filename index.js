@@ -6,6 +6,10 @@ var fileCache = {};
 var regexp = new RegExp(/\.([0-9a-z]+)(?:[\?#]|$)/);
 
 function fixExtension(filename) {
+  if (!filename) {
+    throw new Error('unknown `' + filename + '` view');
+  }
+
   if (regexp.test(filename) === false) {
     filename += '.html';
   }
@@ -29,7 +33,7 @@ module.exports = function(path, options, callback) {
       ? fileCache[key] || (fileCache[key] = fs.readFileSync(path, 'utf8'))
       : fs.readFileSync(path, 'utf8');
   } catch (err) {
-    return callback(err);
+    return callback(new Error('cannot read `' + path + '` view'));
   }
 
   if (typeof options.layout === 'undefined') {
@@ -41,7 +45,6 @@ module.exports = function(path, options, callback) {
 
   options.partial = options.renderPartial = function renderPartial(partialPath, locals) {
     try {
-
       var partialFile = fs.readFileSync(lookup(fixExtension(partialPath)), 'utf8');
 
       var partialTemplate = new Thulium({
@@ -56,7 +59,7 @@ module.exports = function(path, options, callback) {
       return partialTemplate.view;
 
     } catch (err) {
-      return callback(err);
+      return callback(new Error('cannot read `' + partialPath + '` partial'));
     }
 
   };
@@ -73,7 +76,7 @@ module.exports = function(path, options, callback) {
         ? fileCache[layoutKey] || (fileCache[layoutKey] = fs.readFileSync(layoutPath, 'utf8'))
         : fs.readFileSync(layoutPath, 'utf8');
     } catch (err) {
-      return callback(err);
+      return callback(new Error('cannot read `' + options.layout + '` layout'));
     }
 
     tm = new Thulium({
