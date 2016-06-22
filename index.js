@@ -37,11 +37,12 @@ module.exports = function(path, options, callback) {
   }
 
   var tm;
+  var lookup = this.lookup.bind(this);
 
   options.partial = options.renderPartial = function renderPartial(partialPath, locals) {
     try {
 
-      var partialFile = fs.readFileSync('./' + options.settings.views + '/' + fixExtension(partialPath), 'utf8');
+      var partialFile = fs.readFileSync(lookup(fixExtension(partialPath)), 'utf8');
 
       var partialTemplate = new Thulium({
         template : partialFile
@@ -63,7 +64,7 @@ module.exports = function(path, options, callback) {
   if (options.layout !== false) {
     var layoutView;
 
-    var layoutPath = this.lookup('layouts/' + fixExtension(options.layout));
+    var layoutPath = lookup('layouts/' + fixExtension(options.layout));
 
     var layoutKey = layoutPath + ':thulium:string';
 
