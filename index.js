@@ -63,7 +63,7 @@ module.exports = function(path, options, callback) {
   if (options.layout !== false) {
     var layoutView;
 
-    var layoutPath = './' + options.settings.views + '/layouts/' + fixExtension(options.layout);
+    var layoutPath = this.lookup('layouts/' + fixExtension(options.layout));
 
     var layoutKey = layoutPath + ':thulium:string';
 
