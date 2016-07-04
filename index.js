@@ -54,6 +54,15 @@ module.exports = function(path, options, callback) {
       locals = locals || {};
       locals.partial = locals.renderPartial = renderPartial;
 
+      // merge parent's locals for simple inheritance
+      Object.keys(options).forEach(function (prop) {
+        var value = options[prop];
+
+        if (typeof locals[prop] === 'undefined') {
+          locals[prop] = options[prop];
+        }
+      });
+
       partialTemplate.parseSync().renderSync(locals);
 
       return partialTemplate.view;
