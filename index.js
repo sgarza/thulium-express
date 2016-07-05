@@ -51,10 +51,25 @@ module.exports = function(path, options, callback) {
         template : partialFile
       });
 
-      locals = locals || {};
-      locals.partial = locals.renderPartial = renderPartial;
+      var copy = {};
 
-      partialTemplate.parseSync().renderSync(locals);
+      if (locals) {
+        // avoid references
+        Object.keys(locals).forEach(function (key) {
+          copy[key] = locals[key];
+        });
+      }
+
+      copy.partial = copy.renderPartial = renderPartial;
+
+      // merge parent's locals for simple inheritance
+      Object.keys(options).forEach(function (prop) {
+        if (prop.charAt() !== '_' && prop !== 'settings' && typeof copy[prop] === 'undefined') {
+          copy[prop] = options[prop];
+        }
+      });
+
+      partialTemplate.parseSync().renderSync(copy);
 
       return partialTemplate.view;
 
